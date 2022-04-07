@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 04, 2022 at 12:41 AM
+-- Generation Time: Apr 07, 2022 at 10:39 AM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.28
 
@@ -131,7 +131,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (27, '2021_01_29_121118_rename_segments_to_tags', 1),
 (28, '2021_02_26_110520_add_smtp_email_service_type', 1),
 (29, '2021_10_22_202820_add_postal_email_service_type', 1),
-(30, '2022_04_03_182850_create_jobs_table', 2);
+(30, '2022_04_03_182850_create_jobs_table', 2),
+(31, '2022_04_06_152727_alter_subscribers_table', 3);
 
 -- --------------------------------------------------------
 
@@ -179,7 +180,7 @@ CREATE TABLE `sendportal_campaigns` (
 --
 
 INSERT INTO `sendportal_campaigns` (`id`, `workspace_id`, `name`, `status_id`, `template_id`, `email_service_id`, `subject`, `content`, `from_name`, `from_email`, `is_open_tracking`, `is_click_tracking`, `sent_count`, `open_count`, `click_count`, `send_to_all`, `save_as_draft`, `scheduled_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Test', 1, 1, 1, 'Test Campaign', '<p><span style=\"color: rgb(82, 98, 122); font-family: brownregular, sans-serif; font-size: 15px;\">Our Specialist Services include; cardiology, endocrinology, gastroenterology, pulmonology, Psychiatry, immunization for children and adults, periodic medical examination, urology, physiotherapy, general surgery, orthopaedics, and plastic surgery, obstetrics and Gynaecology, pre-employment medical check-up etc.</span><br></p>', 'AnnaMaria Hospital', 'info@annamariahospital.com', 1, 1, 0, 0, 0, 0, 1, NULL, '2022-04-03 17:52:46', '2022-04-03 17:52:46');
+(1, 1, 'Test', 1, 1, 1, 'AnnaMaria Hospital', '<p><span style=\"color: rgb(82, 98, 122); font-family: brownregular, sans-serif; font-size: 15px;\">Our Specialist Services include; cardiology, endocrinology, gastroenterology, pulmonology, Psychiatry, immunization for children and adults, periodic medical examination, urology, physiotherapy, general surgery, orthopaedics, and plastic surgery, obstetrics and Gynaecology, pre-employment medical check-up etc.</span><br></p>', 'AnnaMaria Hospital', 'info@annamariahospital.com', 1, 1, 0, 0, 0, 0, 1, NULL, '2022-04-03 17:52:46', '2022-04-05 12:17:31');
 
 -- --------------------------------------------------------
 
@@ -341,7 +342,7 @@ CREATE TABLE `sendportal_message_urls` (
 CREATE TABLE `sendportal_subscribers` (
   `id` int UNSIGNED NOT NULL,
   `workspace_id` int UNSIGNED NOT NULL,
-  `hash` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hash` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -358,7 +359,7 @@ CREATE TABLE `sendportal_subscribers` (
 
 INSERT INTO `sendportal_subscribers` (`id`, `workspace_id`, `hash`, `email`, `first_name`, `last_name`, `meta`, `unsubscribed_at`, `unsubscribe_event_id`, `created_at`, `updated_at`) VALUES
 (1, 1, '7f4ae53b-fe8d-408f-ae71-80d0e11326d2', 'nneka@annamariahospital.com', 'Nneka', 'Mrs.', NULL, NULL, NULL, '2022-04-03 20:04:36', '2022-04-03 20:04:36'),
-(7, 1, '', 'temitope.joseph@myself.com', '', '', NULL, NULL, NULL, '2022-04-03 22:24:07', '2022-04-03 22:24:07');
+(27, 1, '$2y$10$lLAJVTSbf6/HWXVxiKOsaezBtMICMuQBlZ3Ff1QHdCUSXONbOnV8i', 'hennie1_5@live.com', '', '', NULL, NULL, NULL, '2022-04-06 15:35:14', '2022-04-06 15:35:14');
 
 -- --------------------------------------------------------
 
@@ -724,7 +725,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `sendportal_campaigns`
@@ -778,7 +779,7 @@ ALTER TABLE `sendportal_message_urls`
 -- AUTO_INCREMENT for table `sendportal_subscribers`
 --
 ALTER TABLE `sendportal_subscribers`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `sendportal_tags`
